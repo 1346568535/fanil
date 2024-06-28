@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>首页</title>
+		<style>
+			*{
+				margin: 0;
+				box-sizing: border-box;
+			}
+			header{
+				position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 10;
+				padding: 20px 100px;
+				box-sizing: border-box;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				color: #fff;
+				overflow: hidden;
+				border-bottom: double white 1px;
+				background-color:#1ba784;
+			}
+			div.search {
+			    padding: 10px 0;
+			}
+			form {
+			    position: relative;
+			     width: 300px;
+			    margin: 0 auto;  /*设置宽度后，居中*/
+			}
+			input,button{
+			    border: none;   /*无边框样式；元素的总宽度和高度包括边框的宽度 */
+			    outline: none;  /*无轮廓样式；轮廓是在元素周围绘制的一条线，在边框之外并且可能与其他内容重叠，以凸显元素，元素的总宽度和高度不受轮廓线宽度的影响。*/
+			}
+			.search input{
+			    width: 100%;
+			    height: 42px;
+			    padding-left: 13px;
+			    border: 2px solid #2b312c;
+			    border-radius: 19px;   /*border-radius 属性用于向元素添加圆角边框：*/
+			    background: transparent;  /*背景透明*/
+			}
+			.search button {
+				height: 42px;
+			    width: 42px;
+			    cursor: pointer;  /*cursor属性定义了鼠标指针放在一个元素边界范围内时所用的光标形状*/
+			    position: absolute;
+			    background: #2b312c;
+			    border-radius: 0 19px 19px 0;
+			    width: 60px;
+			    right: 0;
+			}
+			.search button:hover {
+			     background-color: #c7585c;  /*点击搜索按钮时的背景颜色*/
+			}
+			/* 在<button>元素后面插入内容，并设置所插入内容的样式： */
+			.search button:before {
+			    content: "搜索";  /*插入的内容*/
+			    font-size: 13px;  /*插入内容的字体大小*/
+			    color: #F9F0DA;  /*插入内容的字体颜色*/
+			}
+			.nav-header {
+				display: flex;
+				flex-direction: column;
+			}
+			.navbar-brand {
+				font-family:"宋体";
+			    font-size: 30px;
+			    font-weight: bold;
+				height:30px;
+				color:#FFF;
+			}
+			.navbar-brandE {
+				font-family:"Times New Roman";
+			    font-size: 15px;
+				font-weight:700;
+				text-align: center;
+			}
+			header ul {
+			    list-style: none;
+			    display: flex;
+			    justify-content: center;
+			    align-items: center;
+			}
+			header ul li {
+			    font-weight: 400;
+			    margin-left: 15px;
+			    transition: all .5s linear;
+			    padding: 5px 10px;
+			    border-radius: 20px;
+			}
+			header ul li:hover {
+			    background: #619ac3;
+			    color: #2b1055;
+			}
+			header ul li.active {
+			    background:#619ac3;
+			    color: #2b1055;
+			}
+			a:link,a:visited{
+				color:#FFF;
+				text-decoration:none;
+			}
+			
+			
+			.banner-container{
+				width: 1720px;
+				height: 500px;
+				margin-top: 80px;
+				overflow: hidden;
+				position: relative;
+			}
+			.banner-container .img-container{
+				width: 8600px;
+				height: 500px;
+				overflow: hidden;
+				position: absolute;
+				display: flex;
+				animation: run 10s ease infinite;
+			}
+			.banner-container .img-container img{
+				width: 1720px;
+				height: 500px;
+			}
+			.container{
+				width:1650px;
+				display:flex;
+				align-items:center;
+				padding:20px;
+				border-radius:10px;
+			}
+			.card{
+				position:relative;
+				width:500px;
+				height:330px;
+				background:#497271;
+				border-radius:3px;
+				cursor:pointer;
+				box-shadow:6px 6px 10px rgba(0,0,0,0.8);
+				transition:0.3s all;
+				overflow:hidden;
+				margin:50px;
+				border:3px #FFFFFF solid;
+			}
+			.card:hover{
+				box-shadow:4px 4px 10px rgba(255,255,255,0.5);
+			}
+			.img{
+				position:absolute;
+				width:100%;
+				height:300px;
+				overflow:hidden;
+				top:0;
+				left:0;
+			}
+			.img img{
+				width:100%;
+				height:100%;
+				transition:all 0.5s;
+			}
+			.card:hover .img img{
+				transform:scale(1.2);
+				filter:blur(1px);
+			}
+			.content{
+				position: absolute;
+				bottom: -200px;
+				width: 100%;
+				transition: 0.5s;
+				background: #497271;
+				height: 240px;
+				left: 0px;
+			}
+			.card:hover .content{
+				bottom:0px;
+			}
+			.content h2{
+				color:#FFF;
+				text-align:center;
+				line-height:45px;
+			}
+			.content p{
+				psdding:0 30px;
+				font-family:"宋体";
+				font-size:14px;
+				color:#FFF;
+				margin:10px;
+				font-weight:700;
+			}
+			
+			.box-1{
+				padding: 20px 0;
+			}
+			.box-1 .left,.box-1 .right{
+				width: 50%;
+				float: left;
+			}
+			.left{
+				transition: all 1s ease;
+			}
+			.left:hover{
+				transform: scale(1.2);
+			}
+			.box-1 .left img{
+				width: 92%;
+				margin-left: 2%;
+				
+			}	
+			.box-1 .right{
+				padding-right: 20px;
+				box-sizing: border-box;
+			}
+			.box-1 .right h3{
+				font-size: 28px;
+				line-height: 30px;
+				font-weight: bold;
+				text-align: center;
+				padding-bottom: 25px;
+			}
+			.box-1 .right p{
+				line-height: 25px;
+			}
+			
+			.box-img  ul li{
+				width: 33.33%;
+				float: left;
+				padding: 0 10px;
+				box-sizing: border-box;
+			}
+			.box-img  ul li img{
+				width: 100%;
+				height: 240px;
+				display: block;
+				object-fit: cover;
+			}
+			
+			.box-img  ul li p{
+				padding: 15px 0;
+				text-align: center;
+				font-size: 16px;
+				color: #333333;
+			}
+			.clear{
+				height: 0;
+				clear: both;
+			}
+			footer{
+				width: 100%;
+				height: 60px;
+				line-height: 60px;
+				text-align: center;
+				background-color: #1ba784;
+				color: #fff;
+				font-size: 18px;
+			}
+			/* 轮播图关键帧 */
+			/* 自动轮播 */
+			
+			@keyframes run {
+				0%,10%{
+					/* margin-left: 0; */
+					transform: translateX(0);
+				}
+				20%,30%{
+					/* margin-left: -1200px;; */
+					transform: translateX(-1720px);
+				}
+				40%,50%{
+					/* margin-left: -2400px; */
+					transform: translateX(-3440px);
+				}
+				60%,70%{
+					/* margin-left: -3600px; */
+					transform: translateX(-5160px);
+				}
+				80%,90%{
+					/* margin-left: -4800px; */
+					transform: translateX(-6880px);
+				}
+				100%{
+					/* margin-left: 0; */
+					transform: translateX(0);
+				}
+			}
+			
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="nav-header">
+				<p class="navbar-brand">辽宁盘锦</p>
+				<p class="navbar-brandE">PAN JIN DA MI</p>
+			</div>
+			<ul>
+				<li class="active"><a href="index.html">网站首页</a></li>
+				<li><a href="稻米文化.html">稻米文化</a></li>
+				<li><a href="品牌建设.html">品牌建设</a></li>
+				<li><a href="个人主页.html">个人主页</a></li>
+				<li><a href="dengluorzhuce.html">登录/注册</a></li>
+			</ul>
+			<div class="search">
+				<form action="" method="post">
+					<input placeholder="请输入..." name="keyword" type="text">
+					<button type="submit"></button>
+				</form>
+			</div>
+		</header>
+		<div class="banner-container">
+			<div class="img-container">
+				<img src="img/BANNER1.jpg" alt="盘锦大米"/>
+				<img src="img/BANNER2.jpg" alt="盘锦大米"/>
+				<img src="img/BANNER3.jpg" alt="盘锦大米"/>
+				<img src="img/BANNER4.jpg" alt="盘锦大米"/>
+				<img src="img/BANNER5.jpg" alt="盘锦大米"/>
+			</div>
+		</div>
+		<div class="container">
+			<div class="card">
+				<div class="img">
+					<a >
+					<img src="img/right.jpg" width="257" height="182">
+					</a>
+				</div>
+				<div class="content">
+					<h2>历史渊源</h2>
+					<p>&emsp;&emsp;据史料记载，1907年盘锦开始水稻种植，之后种植面积不断扩大。1928年，张学良创办了“营田股份有限公司”，开创了东北地区水稻生产机械化的先河。1948年，盘锦解放后，政府开始了大规模垦荒造田，改良土壤，为盘锦成为国家重要的商品粮基地奠定了坚实的基础。在盘锦的历史上，独特的“移民文化”也促进了稻作文化的发展。上世纪60年代末，数以万计的“五七大军”和知识青年从祖国的四面八方来到盘锦，开发“南大荒”。他们参与农村生产建设，以自己的智慧和辛勤推动了盘锦水稻耕种技术的进步。在他们与当地农民的共同努力下，长满蒿草的盐碱地变成了大片的稻田。“盘锦大米好吃”，随着70年代末知识青年陆续返回家乡，这句话传遍了全国.</p>
+				</div>
+			</div>
+			<div class="card">
+				<div class="img">
+					<a ">
+					<img src="img/稻田十八弯.jpg" width="257" height="182">
+					</a>
+				</div>
+				<div class="content">
+					<h2>生产情况</h2>
+					<p>&emsp;&emsp;1986－1990年5年间，盘锦市共生产粮食331.5万吨，商品率为54%，其中水稻面积稳定在7.6万公顷，5年产量累计35.8万吨。大洼县水稻亩产超过625公斤，在北方省、市、区单季稻中居第一位；水稻商品率高达72%，为全省之首。1999年，全市粮食总产量达到89.2万吨，其中以优质米为主的水稻产量81.8万吨，均创历史最高水平。2001年，推广水稻优质新品种8万公顷。2002年，大力实施百万亩优质稻工程，辽粳294、辽粳7、辽粳371等优质水稻种植面积7.33万公顷，占水稻种植面积的70%，其中稻田养蟹、蟹田种稻绿色大米3.77万公顷，富硒米2万公顷。2006年，全市水稻播种面积达到10．5038万公顷，总产量达到98万吨。</p>
+				</div>
+			</div>
+			<div class="card">
+				<div class="img">
+					<a >
+					<img src="img/蟹田.jpg" width="257" height="182">
+					</a>
+				</div>
+				<div class="content">
+					<h2>种植体系</h2>
+					<p>&emsp;&emsp;盘锦自水稻种植开始就走上了不断引进、改良、更新、选育、推广水稻优质品种的艰难道路。截至2007年，盘锦自主培育出的水稻优质品种辽盐2号、盐丰47、盐丰49等，得到稻农的普遍认可。盘锦水稻种植，从低洼地、人工提水开始，历经百年，截至2007年，盘锦的所有水稻种植户都掌握了适应盘锦水盐运动规律的水控方法，成本低，秧苗壮的育苗方法，水稻田管理和水稻生长管理的技术标准和方式方法，施肥的标准和技术，水田除草的生态方法，开创了稻田养鱼，稻田养蟹的生态循环水稻种植方法，熟悉“有机水稻生产规程和标准”，成功种植出富硒稻等特种优质水稻。盘锦优质水稻生产已经进入了标准化、精细化的发展阶段。</p>
+				</div>
+			</div>
+		</div>
+		<div class="box-1">
+			<div class="left"><img src="img/leftbytable.jpg">  </div>
+			<div class="right">
+				<h3>盘锦大米</h3>
+				<p>盘锦大米，盘锦市名特产品。盘锦大米外观晶莹剔透、颗粒如珠，做成米饭柔软润滑、清香适口。这是由盘锦的土壤、水质、气候加精良的耕作技术等综合因素促成的。根据国家标准《大米》（GB1354-86）、优质稻谷标准（GB/T17891-1999）与盘锦大米标准（GB18824-2002）中的各项质量指标对比，盘锦大米的各项质量指标均达到优质稻谷标准，并在色泽和气味上有着盘锦大米独有的特色。在各项理化指标中，盘锦大米也有着明显的优势，比如糊化温度低、直链淀粉含量较低、胶稠度高、蛋白质和氨基酸含量丰富等。<br>
+					<table width="100%" border="1">
+						<tbody>
+							<tr>
+								<th align="center" width="205"><div>大米种类</div></th>
+								<th align="center" width="586"><div>特点</div></th>
+							</tr>
+							<tr>
+								<td align="center" width="205"><div>蟹田大米</div></td>
+								<td align="center" width="586"><div>采用蟹稻共生的方式，形成水稻护蟹，蟹吃虫儿，双惠肥田的食物链。</div></td>
+							</tr>
+							<tr>
+								<td align="center" width="205"><div>辽粳大米</div></td>
+								<td align="center" width="586"><div>米质晶莹剔透，口感香醇，细软滑腻，并且富含多种有机质，食用后余香绕口不绝</div></td>
+							</tr>
+							<tr>
+								<td align="center" width="205"><div>盐丰大米</div></td>
+								<td align="center" width="586"><div>具有充足的河水灌溉，土壤没有工业污染，且具有部分的偏碱性</div></td>
+							</tr>
+							<tr>
+								<td align="center" width="205"><div>盘锦糙米</div></td>
+								<td align="center" width="586"><div>盘锦糙米维他命、矿物质与膳食纤维的含量更丰富，被视为是一种绿色的健康食品</div></td>
+							</tr>
+							<tr>
+								<td align="center" width="205"><div>胚芽大米</div></td>
+								<td align="center" width="586"><div>胚芽大米的功效中维生素E能预防动肝硬化和高血压等，钙含量比普通大米多一倍</div></td>
+							</tr>
+							<tr>
+								<td align="center" width="205"><div>丰锦大米</div></td>
+								<td align="center" width="586"><div>米质晶莹剔透,口感香醇,黏软滑腻,并且富含多种有机质,食后余香绕口不绝</div></td>
+							</tr>
+							<tr>
+								<td align="center" width="205"><div>一目惚大米</div></td>
+								<td align="center" width="586"><div>生长在北纬45度黄金水稻种植带，辽河三角洲红海滩自然保护区。</div></td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+			</div>
+			<div class="clear" ></div>
+		</div>
+		<footer> &copy;计算机科学与技术三班 陈扬飞翼 20220000580</footer>
+	</body>
+</html>
